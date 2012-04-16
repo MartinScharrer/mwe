@@ -1,0 +1,18 @@
+\documentclass[10pt]{article}
+\usepackage[a3paper]{geometry}
+
+\usepackage{tikz}
+\usepackage{lipsum}
+
+\pagestyle{empty}
+\begin{document}
+
+\lipsum[1-12]
+\lipsum*[13]
+\begin{tikzpicture}[remember picture,overlay]
+  \clip (current page.south west) rectangle (current page.north east);
+  \draw [line width=2pt] ([shift={(.5\pgflinewidth,.5\pgflinewidth)}]current page.south west) rectangle ([shift={(-.5\pgflinewidth,-.5\pgflinewidth)}]current page.north east);
+\end{tikzpicture}
+
+\end{document}
+
