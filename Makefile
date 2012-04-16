@@ -9,14 +9,16 @@ export CONTRIBUTION VERSION NAME EMAIL SUMMARY DIRECTORY DONOTANNOUNCE ANNOUNCE 
 
 BUILDDIR = build
 
-IMAGESRCFILES = $(wildcard *.tex)
+IMAGESRCFILES = $(wildcard image*.tex) $(wildcard grid*.tex)
 PDFFILES      = $(addprefix ${BUILDDIR}/, $(subst .tex,.pdf,${IMAGESRCFILES}))
+RASTERIMAGES  = image.jpg image.png
+BRASTERIMAGES = $(addprefix ${BUILDDIR}/, ${RASTERIMAGES})
 MAINDTXS      = mwe.dtx
 MAINPDFS      = $(subst .dtx,.pdf,${MAINDTXS})
 DTXFILES      = ${MAINDTXS}
 INSFILES      = ${CONTRIBUTION}.ins
-LTXFILES      = ${CONTRIBUTION}.sty 
-LTXIMGFILES   = $(subst .tex,.pdf,${IMAGESRCFILES})
+LTXFILES      = ${CONTRIBUTION}.sty ${IMAGESRCFILES}
+LTXIMGFILES   = $(subst .tex,.pdf,${IMAGESRCFILES}) ${RASTERIMAGES}
 LTXDOCFILES   = ${MAINPDFS} README
 LTXSRCFILES   = ${DTXFILES} ${INSFILES}
 PLAINFILES    = #${CONTRIBUTION}.tex
@@ -50,7 +52,7 @@ SCRIPTDIR   = ${TEXMF}/scripts/${CONTRIBUTION}/
 SCRDOCDIR   = ${TEXMF}/doc/support/${CONTRIBUTION}/
 
 TDSDIR   = tds
-TDSFILES = ${LTXFILES} ${LTXDOCFILES} ${LTXSRCFILES} \
+TDSFILES = ${LTXFILES} ${LTXDOCFILES} ${LTXSRCFILES} ${LTXIMGFILES} \
 		   ${PLAINFILES} ${PLAINDOCFILES} ${PLAINSRCFILES} \
 		   ${GENERICFILES} ${GENDOCFILES} ${GENSRCFILES} \
 		   ${SCRIPTFILES} ${SCRDOCFILES}
@@ -70,8 +72,6 @@ all: doc
 
 doc: ${MAINPDFS}
 
-pdfs: ${PDFFILES}
-
 ${MAINPDFS}: ${DTXFILES} README ${INSFILES} ${LTXFILES} ${PDFFILES}
 	${MAKE} --no-print-directory build
 	cp "${BUILDDIR}/$@" "$@"
@@ -80,14 +80,18 @@ ifneq (${BUILDDIR},build)
 build: ${BUILDDIR}
 endif
 
-${PDFFILES}: ${BUILDDIR}/%.pdf: %.tex
-	-mkdir ${BUILDDIR} 2>/dev/null || true
-	cd ${BUILDDIR} && latexmk -silent -pdf ${PWD}/$*
+%.png: %.pdf
+	convert $*.pdf $*.png
 
-${BUILDDIR}: ${MAINFILES} ${PDFFILES}
+%.jpg: %.pdf
+	convert $*.pdf $*.jpg
+
+${BUILDDIR}: ${MAINFILES}
 	-mkdir ${BUILDDIR} 2>/dev/null || true
 	cp ${MAINFILES} README ${BUILDDIR}/
 	$(foreach DTX,${DTXFILES}, tex '\input ydocincl\relax\includefiles{${DTX}}{${BUILDDIR}/${DTX}}' && rm -f ydocincl.log;)
+	cd ${BUILDDIR}; $(foreach TEX,${IMAGESRCFILES}, latexmk -pdf -silent ${TEX};)
+	cd ${BUILDDIR}; ${MAKE} -f ${PWD}/Makefile --no-print-directory ${RASTERIMAGES}
 	cd ${BUILDDIR}; $(foreach INS, ${INSFILES}, tex ${INS};)
 	cd ${BUILDDIR}; $(foreach DTX, ${MAINDTXS}, ${LATEXMK} ${DTX};)
 	touch ${BUILDDIR}
