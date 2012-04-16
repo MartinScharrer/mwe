@@ -86,7 +86,12 @@
 %
 % \section{Provided Images}
 % The following images are provided by \pkg{mwe}.
-% Larger images are scaled down to fit on the pages of this document.
+% Several images are provided with sizes both in TeX points (1pt=1/72.27in) and PostScript/PDF points (1pt=1/72in).
+% The pt versions will produce more exact results if inserted in source form in a \LaTeX document, while the bp versions
+% result in nice integer PDF sizes. The difference is not meaningful for normal MWEs but can be significant if these files
+% are used to demonstrate scaling features.
+%
+% Note that larger images are scaled down to fit on the pages of this document.
 %
 % \def\mweimage#1{\begin{figure}\adjincludegraphics[max size={\textwidth}{.8\textheight},center]{#1}\caption{Image `\texttt{#1}'.}\end{figure}}
 % 
@@ -102,9 +107,19 @@
 % 
 % \mweimage{image-16x9-pt}
 % 
+% \mweimage{image-4x3-bp}
+% 
+% \mweimage{image-4x3-pt}
+% 
+% \mweimage{image-golden-bp}
+% 
+% \mweimage{image-golden-pt}
+% 
 % \mweimage{image-1x1-bp}
 % 
 % \mweimage{image-1x1-pt}
+%
+% \clearpage
 % 
 % \mweimage{image-a3-landscape}
 % 
@@ -121,6 +136,14 @@
 % \mweimage{image-letter-landscape}
 % 
 % \mweimage{image-letter}
+%
+% \mweimage{image.pdf}
+%
+% \mweimage{image.png}
+%
+% \mweimage{image.jpg}
+%
+%
 % \StopEventually{}
 % \clearpage
 % \section{Implementation}
