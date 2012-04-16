@@ -7,15 +7,16 @@ FREEVERSION   = lppl
 CTAN_FILE     = ${CONTRIBUTION}.zip
 export CONTRIBUTION VERSION NAME EMAIL SUMMARY DIRECTORY DONOTANNOUNCE ANNOUNCE NOTES LICENSE FREEVERSION CTAN_FILE
 
+BUILDDIR = build
 
-
-TEXFILES      = $(subst .tex,,$(wildcard *.tex))
-PDFFILES      = $(addsuffix .pdf,${TEXFILES})
+IMAGESRCFILES = $(wildcard *.tex)
+PDFFILES      = $(addprefix ${BUILDDIR}/, $(subst .tex,.pdf,${IMAGESRCFILES}))
 MAINDTXS      = mwe.dtx
 MAINPDFS      = $(subst .dtx,.pdf,${MAINDTXS})
 DTXFILES      = ${MAINDTXS}
 INSFILES      = ${CONTRIBUTION}.ins
-LTXFILES      = ${CONTRIBUTION}.sty ${PDFFILES}
+LTXFILES      = ${CONTRIBUTION}.sty 
+LTXIMGFILES   = $(subst .tex,.pdf,${IMAGESRCFILES})
 LTXDOCFILES   = ${MAINPDFS} README
 LTXSRCFILES   = ${DTXFILES} ${INSFILES}
 PLAINFILES    = #${CONTRIBUTION}.tex
@@ -54,15 +55,14 @@ TDSFILES = ${LTXFILES} ${LTXDOCFILES} ${LTXSRCFILES} \
 		   ${GENERICFILES} ${GENDOCFILES} ${GENSRCFILES} \
 		   ${SCRIPTFILES} ${SCRDOCFILES}
 
-BUILDDIR = build
 
 LATEXMK  = latexmk -pdf -quiet
 ZIP      = zip -r
 WEBBROWSER = firefox
 GETVERSION = $(strip $(shell grep '=\*VERSION' -A1 ${MAINDTXS} | tail -n1))
 
-AUXEXTS  = .aux .bbl .blg .cod .exa .fdb_latexmk .glo .gls .lof .log .lot .out .pdf .que .run.xml .sta .stp .svn .svt .toc
-CLEANFILES = $(addprefix ${CONTRIBUTION}, ${AUXEXTS})
+AUXEXTS  = .aux .bbl .blg .cod .exa .fdb_latexmk .glo .gls .lof .log .lot .out .pdf .que .run.xml .sta .stp .svn .svt .toc .fls
+CLEANFILES = $(addprefix *, ${AUXEXTS})
 
 .PHONY: all doc clean distclean
 
@@ -72,10 +72,7 @@ doc: ${MAINPDFS}
 
 pdfs: ${PDFFILES}
 
-%.pdf: %.tex
-	latexmk -pdf $*
-
-${MAINPDFS}: ${DTXFILES} README ${INSFILES} ${LTXFILES}
+${MAINPDFS}: ${DTXFILES} README ${INSFILES} ${LTXFILES} ${PDFFILES}
 	${MAKE} --no-print-directory build
 	cp "${BUILDDIR}/$@" "$@"
 
@@ -83,7 +80,11 @@ ifneq (${BUILDDIR},build)
 build: ${BUILDDIR}
 endif
 
-${BUILDDIR}: ${MAINFILES}
+${PDFFILES}: ${BUILDDIR}/%.pdf: %.tex
+	-mkdir ${BUILDDIR} 2>/dev/null || true
+	cd ${BUILDDIR} && latexmk -silent -pdf ${PWD}/$*
+
+${BUILDDIR}: ${MAINFILES} ${PDFFILES}
 	-mkdir ${BUILDDIR} 2>/dev/null || true
 	cp ${MAINFILES} README ${BUILDDIR}/
 	$(foreach DTX,${DTXFILES}, tex '\input ydocincl\relax\includefiles{${DTX}}{${BUILDDIR}/${DTX}}' && rm -f ydocincl.log;)
@@ -110,6 +111,10 @@ install: $(addprefix ${BUILDDIR}/,${TDSFILES})
 ifneq ($(strip $(LTXFILES)),)
 	test -d "${LTXDIR}" || mkdir -p "${LTXDIR}"
 	cd ${BUILDDIR} && cp ${LTXFILES} "$(abspath ${LTXDIR})"
+endif
+ifneq ($(strip $(LTXIMGFILES)),)
+	test -d "${LTXDIR}" || mkdir -p "${LTXDIR}"
+	cd ${BUILDDIR} && cp ${LTXIMGFILES} "$(abspath ${LTXDIR})"
 endif
 ifneq ($(strip $(LTXSRCFILES)),)
 	test -d "${LTXSRCDIR}" || mkdir -p "${LTXSRCDIR}"

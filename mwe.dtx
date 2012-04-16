@@ -33,6 +33,7 @@
 \documentclass{ydoc}
 \GetFileInfo{mwe.dtx}
 \usepackage{mwe}[\filedate]
+\usepackage[export]{adjustbox}
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
@@ -81,8 +82,45 @@
 % \end{abstract}
 %
 % \section{Introduction}
-% 
 %
+%
+% \section{Provided Images}
+% The following images are provided by \pkg{mwe}.
+% Larger images are scaled down to fit on the pages of this document.
+%
+% \def\mweimage#1{\begin{figure}\adjincludegraphics[max size={\textwidth}{.8\textheight},center]{#1}\caption{Image `\texttt{#1}'.}\end{figure}}
+% 
+% \mweimage{grid-100x100bp}
+% 
+% \mweimage{grid-100x100pt}
+% 
+% \mweimage{image-16x10-bp}
+% 
+% \mweimage{image-16x10-pt}
+% 
+% \mweimage{image-16x9-bp}
+% 
+% \mweimage{image-16x9-pt}
+% 
+% \mweimage{image-1x1-bp}
+% 
+% \mweimage{image-1x1-pt}
+% 
+% \mweimage{image-a3-landscape}
+% 
+% \mweimage{image-a3}
+% 
+% \mweimage{image-a4-landscape}
+% 
+% \mweimage{image-a4}
+% 
+% \mweimage{image-a5-landscape}
+% 
+% \mweimage{image-a5}
+% 
+% \mweimage{image-letter-landscape}
+% 
+% \mweimage{image-letter}
 % \StopEventually{}
 % \clearpage
 % \section{Implementation}
