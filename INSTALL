@@ -1,0 +1,22 @@
+Installation
+~~~~~~~~~~~~
+
+The 'mwe' package has due to its nature a little uncommon installation requirements.
+While the normal package files are installed as normal, also a variety of image files
+are installed in the 'tex/latex/mwe/' folder, so that they can be accessed from
+every (MWE) document.
+
+The files should be installed in the following subdirectories of the TEXMF tree.
+A TDS ZIP file which only needs to be unzipped over the TEXMF is also provided.
+If 'mwe' is installed over a TeX distribution package manager like TeX Live or MikTeX,
+no manual installation is required by the end-user.
+
+      =======================================================================
+         Files                        TEXMF Installation folder
+      -----------------------------------------------------------------------
+         mwe.dtx mwe.ins              source/latex/mwe/
+         mwe.pdf README INSTALL       doc/latex/mwe/
+         mwe.sty                      tex/latex/mwe/
+         *.pdf *.png *.jpg *.eps      tex/latex/mwe/       <--- Important!
+      =======================================================================
+

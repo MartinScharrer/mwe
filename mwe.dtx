@@ -70,78 +70,116 @@
 %
 % \GetFileInfo{mwe.dtx}
 % \author{Martin Scharrer}
-% \email{martin@scharrer.me}
-% \ifdefined\repository
-%   \repository{https://bitbucket.org/martin_scharrer/mwe}
-% \fi
+% \email{martin@scharrer-online.de}
+% \repository{https://bitbucket.org/martin_scharrer/mwe}
 %
 % \maketitle
 %
 % \begin{abstract}\noindent
-% Files to help creating a minimal working example (MWE).
+% The \pkg{mwe} CTAN package comes with a small \LaTeX\ package which loads
+% packages commonly used to create minimal working examples (MWEs)
+% and with a collection of dummy images. The idea is that this images
+% are installed in the \texttt{TEXMF} tree in a way where they are accessible
+% by any document. Then MWEs with images can be shared by multiple users
+% without the need of image replacement code or the \texttt{dummy} option of \texttt{graphicx}.
 % \end{abstract}
 %
 % \section{Introduction}
 %
 %
+% \section{Usage Examples}
+%
+%
+% \section{Installation}
+% The \pkg{mwe} package has due to its nature a little uncommon installation requirements.
+% While the normal package files are installed as normal, also a variety of image files
+% are installed in the \text{tex/latex/mwe/} folder, so that they can be accessed from
+% every (MWE) document.
+%
+% The files should be installed in the following subdirectories of the \texttt{TEXMF} tree.
+% A TDS ZIP file which only needs to be unzipped over the \texttt{TEXMF} is also provided.
+% If \pkg{mwe} is installed over a TeX distribution package manager like TeX Live or MikTeX,
+% no manual installation is required by the end-user.
+%
+% \begin{center}
+% \begin{tabular}{>{\ttfamily}l>{\ttfamily}l}
+%   \toprule
+%    \normalfont  Files & \normalfont TEXMF Installation folder \\
+%   \middlerule
+%     mwe.dtx mwe.ins         & source/latex/mwe/ \\
+%     mwe.pdf README INSTALL  & doc/latex/mwe/    \\
+%     mwe.sty                 & tex/latex/mwe/    \\
+%     *.pdf *.png *.jpg *.eps & tex/latex/mwe/    \\
+%   \bottomrule
+% \end{tabular}
+% \end{center}
+%
+%
 % \section{Provided Images}
 % The following images are provided by \pkg{mwe}.
-% Several images are provided with sizes both in TeX points (1pt=1/72.27in) and PostScript/PDF points (1pt=1/72in).
-% The pt versions will produce more exact results if inserted in source form in a \LaTeX document, while the bp versions
-% result in nice integer PDF sizes. The difference is not meaningful for normal MWEs but can be significant if these files
-% are used to demonstrate scaling features.
 %
-% Note that larger images are scaled down to fit on the pages of this document.
+% \subsection{Normal Images}
+% The following images are meant as dummy replacements for real images.
+% They are provided as PDF, JPG, PNG and EPS formats in order to cover every possible use-case.
 %
-% \def\mweimage#1{\begin{figure}\adjincludegraphics[max size={\textwidth}{.8\textheight},center]{#1}\caption{Image `\texttt{#1}'.}\end{figure}}
+% \def\mweimage#1{\begin{figure}\adjincludegraphics[max size={\textwidth}{.8\textheight},center]{#1}\caption{Image `\texttt{#1}' (PDF, also available as JPG, PNG and EPS).}\end{figure}}
 % 
-% \mweimage{grid-100x100bp}
+% \mweimage{image}
+%
+% \mweimage{image}
+%
+% \mweimage{image}
+%
+% \mweimage{image-16x10}
 % 
-% \mweimage{grid-100x100pt}
-% 
-% \mweimage{image-16x10-bp}
-% 
-% \mweimage{image-16x10-pt}
-% 
-% \mweimage{image-16x9-bp}
-% 
-% \mweimage{image-16x9-pt}
-% 
-% \mweimage{image-4x3-bp}
-% 
-% \mweimage{image-4x3-pt}
-% 
-% \mweimage{image-golden-bp}
-% 
-% \mweimage{image-golden-pt}
-% 
-% \mweimage{image-1x1-bp}
-% 
-% \mweimage{image-1x1-pt}
+% \mweimage{image-10x16}
+%
+% \mweimage{image-16x9}
+%
+% \mweimage{image-9x16}
+%
+% \mweimage{image-golden}
+%
+% \mweimage{image-golden-upright}
+%
+% \mweimage{image-1x1}
 %
 % \clearpage
-% 
-% \mweimage{image-a3-landscape}
-% 
-% \mweimage{image-a3}
-% 
+% \subsection{Page-size images}
+% The following files are PDFs in a specific page size like A4, letter, etc.
+% They are provided for use cases where whole PDF pages are included.
+% Because these images are large they are scaled down in order to be displayed in this manual.
+%
+% \def\mweimage#1{\begin{figure}\adjincludegraphics[max size={\textwidth}{.8\textheight},center]{#1}\caption{Image `\texttt{#1}' (PDF, scaled down).}\end{figure}}
+%
 % \mweimage{image-a4-landscape}
-% 
+%
 % \mweimage{image-a4}
-% 
+%
+% \mweimage{image-a3-landscape}
+%
+% \mweimage{image-a3}
+%
 % \mweimage{image-a5-landscape}
-% 
+%
 % \mweimage{image-a5}
-% 
+%
 % \mweimage{image-letter-landscape}
-% 
+%
 % \mweimage{image-letter}
 %
-% \mweimage{image.pdf}
+% \clearpage
+% \subsection{Test images}
+% The following images are intended for demonstrations of some image manipulation features.
+% Their grid nature will make cropping effects very visible.
+% These images are provided with sizes both in TeX points (1pt=1/72.27in) and PostScript/PDF points (1pt=1/72in).
+% The pt version will produce more exact results if inserted in source form in a \LaTeX document, while the bp version
+% results in nice integer PDF sizes. The difference is not meaningful for normal MWEs but can be significant if these files
+% are used to demonstrate scaling features.
 %
-% \mweimage{image.png}
+% \mweimage{grid-100x100bp}
 %
-% \mweimage{image.jpg}
+% \mweimage{grid-100x100pt}
 %
 %
 % \StopEventually{}

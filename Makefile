@@ -1,6 +1,6 @@
 CONTRIBUTION  = mwe
 NAME          = Martin Scharrer
-EMAIL         = martin@scharrer.me
+EMAIL         = martin@scharrer-online.de
 DIRECTORY     = /macros/latex/contrib/${CONTRIBUTION}
 LICENSE       = free
 FREEVERSION   = lppl
@@ -11,7 +11,8 @@ BUILDDIR = build
 
 IMAGESRCFILES = $(wildcard image*.tex) $(wildcard grid*.tex)
 PDFFILES      = $(addprefix ${BUILDDIR}/, $(subst .tex,.pdf,${IMAGESRCFILES}))
-RASTERIMAGES  = image.jpg image.png
+SMALLIMAGES   = $(subst .tex,,$(wildcard image*x*.tex) image.tex)
+RASTERIMAGES  = $(foreach image, ${SMALLIMAGES}, $(foreach ext,png jpg eps,${image}.${ext}))
 BRASTERIMAGES = $(addprefix ${BUILDDIR}/, ${RASTERIMAGES})
 MAINDTXS      = mwe.dtx
 MAINPDFS      = $(subst .dtx,.pdf,${MAINDTXS})
@@ -85,6 +86,10 @@ endif
 
 %.jpg: %.pdf
 	convert $*.pdf $*.jpg
+
+%.eps: %.tex
+	latexmk -ps $<
+	mv $*.ps $*.eps
 
 ${BUILDDIR}: ${MAINFILES}
 	-mkdir ${BUILDDIR} 2>/dev/null || true
