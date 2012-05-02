@@ -10,7 +10,8 @@ export CONTRIBUTION VERSION NAME EMAIL SUMMARY DIRECTORY DONOTANNOUNCE ANNOUNCE 
 BUILDDIR = build
 
 IMAGESRCFILES = $(wildcard image*.tex) $(wildcard grid*.tex)
-PDFFILES      = $(addprefix ${BUILDDIR}/, $(subst .tex,.pdf,${IMAGESRCFILES}))
+PDFFILES      = $(subst .tex,.pdf,${IMAGESRCFILES})
+BUILDPDFFILES = $(addprefix ${BUILDDIR}/, ${PDFFILES})
 SMALLIMAGES   = $(subst .tex,,$(wildcard image*x*.tex image-?.tex) image.tex)
 RASTERIMAGES  = $(foreach image, ${SMALLIMAGES}, $(foreach ext,png jpg eps,${image}.${ext}))
 BRASTERIMAGES = $(addprefix ${BUILDDIR}/, ${RASTERIMAGES})
@@ -73,13 +74,17 @@ all: doc
 
 doc: ${MAINPDFS}
 
-${MAINPDFS}: ${DTXFILES} README ${INSFILES} ${LTXFILES} ${PDFFILES}
+${MAINPDFS}: ${DTXFILES} README ${INSFILES} ${LTXFILES} ${BUILDPDFFILES}
 	${MAKE} --no-print-directory build
-	cp "${BUILDDIR}/$@" "$@"
+	cp -a "${BUILDDIR}/$@" "$@"
 
 ifneq (${BUILDDIR},build)
 build: ${BUILDDIR}
 endif
+
+
+%.pdf: %.tex
+	latexmk -pdf -silent $<
 
 %.png: %.pdf
 	convert -density 90 $*.pdf $*.png
@@ -88,15 +93,15 @@ endif
 	convert -density 90 $*.pdf $*.jpg
 
 %.eps: %.tex
-	latexmk -ps $<
+	latexmk -ps -silent $<
 	mv $*.ps $*.eps
 
 ${BUILDDIR}: ${MAINFILES}
 	-mkdir ${BUILDDIR} 2>/dev/null || true
-	cp ${MAINFILES} README ${BUILDDIR}/
+	cp -a ${MAINFILES} README ${BUILDDIR}/
 	$(foreach DTX,${DTXFILES}, tex '\input ydocincl\relax\includefiles{${DTX}}{${BUILDDIR}/${DTX}}' && rm -f ydocincl.log;)
-	cd ${BUILDDIR}; $(foreach TEX,${IMAGESRCFILES}, latexmk -pdf -silent ${TEX};)
-	cd ${BUILDDIR}; ${MAKE} -f ${PWD}/Makefile --no-print-directory ${RASTERIMAGES}
+#	cd ${BUILDDIR}; $(foreach TEX,${IMAGESRCFILES}, latexmk -pdf -silent ${TEX};)
+	cd ${BUILDDIR}; ${MAKE} -f ${PWD}/Makefile --no-print-directory ${RASTERIMAGES} ${PDFFILES} ${IMAGESRCFILES}
 	cd ${BUILDDIR}; $(foreach INS, ${INSFILES}, tex ${INS};)
 	cd ${BUILDDIR}; $(foreach DTX, ${MAINDTXS}, ${LATEXMK} ${DTX};)
 	touch ${BUILDDIR}
