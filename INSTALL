@@ -12,11 +12,17 @@ If 'mwe' is installed over a TeX distribution package manager like TeX Live or M
 no manual installation is required by the end-user.
 
       =======================================================================
-         Files                        TEXMF Installation folder
+         Files                                  TEXMF Installation folder
       -----------------------------------------------------------------------
-         mwe.dtx mwe.ins              source/latex/mwe/
-         mwe.pdf README INSTALL       doc/latex/mwe/
-         mwe.sty                      tex/latex/mwe/
-         *.pdf *.png *.jpg *.eps      tex/latex/mwe/       <--- Important!
+         mwe.dtx mwe.ins                        source/latex/mwe/
+         mwe.pdf README INSTALL                 doc/latex/mwe/
+         mwe.sty                                tex/latex/mwe/
+         *.pdf *.png *.jpg *.eps                tex/latex/mwe/
+         image-*x*.{tex,pdf,png,jpg,eps}        tex/latex/mwe/
+         image-?.{tex,pdf,png,jpg,eps}          tex/latex/mwe/
+         image-golden*.{tex,pdf,png,jpg,eps}    tex/latex/mwe/
+         image-a?*.{pdf,png,jpg,eps}            tex/latex/mwe/
+         image-letter*.{pdf,png,jpg,eps}        tex/latex/mwe/
+         image-a?*.tex image-letter*.tex        source/latex/mwe/
       =======================================================================
 

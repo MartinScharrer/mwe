@@ -11,7 +11,7 @@ BUILDDIR = build
 
 IMAGESRCFILES = $(wildcard image*.tex) $(wildcard grid*.tex)
 PDFFILES      = $(addprefix ${BUILDDIR}/, $(subst .tex,.pdf,${IMAGESRCFILES}))
-SMALLIMAGES   = $(subst .tex,,$(wildcard image*x*.tex) image.tex)
+SMALLIMAGES   = $(subst .tex,,$(wildcard image*x*.tex image-?.tex) image.tex)
 RASTERIMAGES  = $(foreach image, ${SMALLIMAGES}, $(foreach ext,png jpg eps,${image}.${ext}))
 BRASTERIMAGES = $(addprefix ${BUILDDIR}/, ${RASTERIMAGES})
 MAINDTXS      = mwe.dtx
@@ -82,10 +82,10 @@ build: ${BUILDDIR}
 endif
 
 %.png: %.pdf
-	convert $*.pdf $*.png
+	convert -density 90 $*.pdf $*.png
 
 %.jpg: %.pdf
-	convert $*.pdf $*.jpg
+	convert -density 90 $*.pdf $*.jpg
 
 %.eps: %.tex
 	latexmk -ps $<
