@@ -28,6 +28,7 @@ syntax: glob
 *.tar.bz
 *.old
 *.bak
+*.fls
 ?
 build
 tds

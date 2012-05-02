@@ -10,8 +10,12 @@
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\ProvidesPackage{mwe}
 \RequirePackage{graphicx}
-\RequirePackage{lipsum}
+\IfFileExists{lipsum.sty}{%
+    \RequirePackage{lipsum}
+}{}
+\IfFileExists{blindtext.sty}{%
+    \RequirePackage{blindtext}
+}{}
 %    \end{macrocode}
 
