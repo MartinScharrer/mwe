@@ -21,7 +21,7 @@ DTXFILES      = ${MAINDTXS}
 INSFILES      = ${CONTRIBUTION}.ins
 LTXFILES      = ${CONTRIBUTION}.sty ${IMAGESRCFILES}
 LTXIMGFILES   = $(subst .tex,.pdf,${IMAGESRCFILES}) ${RASTERIMAGES}
-LTXDOCFILES   = ${MAINPDFS} README
+LTXDOCFILES   = ${MAINPDFS} README INSTALL
 LTXSRCFILES   = ${DTXFILES} ${INSFILES}
 PLAINFILES    = #${CONTRIBUTION}.tex
 PLAINDOCFILES = #${CONTRIBUTION}.?
@@ -74,7 +74,7 @@ all: doc
 
 doc: ${MAINPDFS}
 
-${MAINPDFS}: ${DTXFILES} README ${INSFILES} ${LTXFILES} ${BUILDPDFFILES}
+${MAINPDFS}: ${DTXFILES} INSTALL README ${INSFILES} ${LTXFILES} ${BUILDPDFFILES}
 	${MAKE} --no-print-directory build
 	cp -a "${BUILDDIR}/$@" "$@"
 
@@ -99,7 +99,7 @@ endif
 ${BUILDDIR}: ${MAINFILES}
 	-mkdir ${BUILDDIR} 2>/dev/null || true
 	$(foreach img, ${IMAGESRCFILES}, mv ${img} ${img}.orig; perl sadocstrip.pl ${img} < ${img}.orig > ${img}; touch --reference ${img}.orig ${img}; )
-	cp -a ${MAINFILES} README ${BUILDDIR}/
+	cp -a ${MAINFILES} INSTALL README ${BUILDDIR}/
 	$(foreach DTX,${DTXFILES}, tex '\input ydocincl\relax\includefiles{${DTX}}{${BUILDDIR}/${DTX}}' && rm -f ydocincl.log;)
 #	cd ${BUILDDIR}; $(foreach TEX,${IMAGESRCFILES}, latexmk -pdf -silent ${TEX};)
 	cd ${BUILDDIR}; ${MAKE} -f ${PWD}/Makefile --no-print-directory ${RASTERIMAGES} ${PDFFILES} ${IMAGESRCFILES}
