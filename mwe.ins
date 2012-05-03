@@ -1,30 +1,32 @@
 \input ydocstrip.tex
 \keepsilent
 \askforoverwritefalse
+
+% Replace 'nostandalone' with 'standalone' to get the standalone preambles.
 \generate{%
   \file{mwe.sty}{\nopreamble\from{mwe.dtx}{mwe.sty}}%
-  \file{grid-100x100bp.tex}{\nopreamble\nopostamble\from{mwe.dtx}{grid-100x100bp.tex}}%
-  \file{grid-100x100pt.tex}{\nopreamble\nopostamble\from{mwe.dtx}{grid-100x100pt.tex}}%
-  \file{image-10x16.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-10x16.tex}}%
-  \file{image-16x10.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-16x10.tex}}%
-  \file{image-16x9.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-16x9.tex}}%
-  \file{image-1x1.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-1x1.tex}}%
-  \file{image-4x3.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-4x3.tex}}%
-  \file{image-9x16.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-9x16.tex}}%
-  \file{image-a3-landscape.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-a3-landscape.tex}}%
-  \file{image-a3.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-a3.tex}}%
-  \file{image-a4-landscape.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-a4-landscape.tex}}%
-  \file{image-a4.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-a4.tex}}%
-  \file{image-a5-landscape.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-a5-landscape.tex}}%
-  \file{image-a5.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-a5.tex}}%
-  \file{image-a.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-a.tex}}%
-  \file{image-b.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-b.tex}}%
-  \file{image-c.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-c.tex}}%
-  \file{image-golden.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-golden.tex}}%
-  \file{image-golden-upright.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-golden-upright.tex}}%
-  \file{image-letter-landscape.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-letter-landscape.tex}}%
-  \file{image-letter.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-letter.tex}}%
-  \file{image.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image.tex}}%
+  \file{grid-100x100bp.tex}{\nopreamble\nopostamble\from{mwe.dtx}{grid-100x100bp.tex,nostandalone}}%
+  \file{grid-100x100pt.tex}{\nopreamble\nopostamble\from{mwe.dtx}{grid-100x100pt.tex,nostandalone}}%
+  \file{image-10x16.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-10x16.tex,nostandalone}}%
+  \file{image-16x10.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-16x10.tex,nostandalone}}%
+  \file{image-16x9.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-16x9.tex,nostandalone}}%
+  \file{image-1x1.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-1x1.tex,nostandalone}}%
+  \file{image-4x3.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-4x3.tex,nostandalone}}%
+  \file{image-9x16.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-9x16.tex,nostandalone}}%
+  \file{image-a3-landscape.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-a3-landscape.tex,nostandalone}}%
+  \file{image-a3.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-a3.tex,nostandalone}}%
+  \file{image-a4-landscape.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-a4-landscape.tex,nostandalone}}%
+  \file{image-a4.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-a4.tex,nostandalone}}%
+  \file{image-a5-landscape.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-a5-landscape.tex,nostandalone}}%
+  \file{image-a5.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-a5.tex,nostandalone}}%
+  \file{image-a.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-a.tex,nostandalone}}%
+  \file{image-b.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-b.tex,nostandalone}}%
+  \file{image-c.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-c.tex,nostandalone}}%
+  \file{image-golden.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-golden.tex,nostandalone}}%
+  \file{image-golden-upright.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-golden-upright.tex,nostandalone}}%
+  \file{image-letter-landscape.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-letter-landscape.tex,nostandalone}}%
+  \file{image-letter.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image-letter.tex,nostandalone}}%
+  \file{image.tex}{\nopreamble\nopostamble\from{mwe.dtx}{image.tex,nostandalone}}%
 }
 \endbatchfile
 %% vim: ft=tex
