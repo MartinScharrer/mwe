@@ -1,7 +1,6 @@
 LaTeX package 'mwe'
 ~~~~~~~~~~~~~~~~~~~
-Copyright (c) 2011 by Martin Scharrer <martin@scharrer.me>
-WWW: http://latex.scharrer.me/
+Copyright (c) 2012 by Martin Scharrer <martin@scharrer-online.de>
 CTAN: http://www.ctan.org/pkg/mwe
 Code repository: https://bitbucket.org/martin_scharrer/mwe
 
@@ -10,5 +9,4 @@ A 'mwe' package is provided which loads a small set of often used packages for M
 In addition several different images are provided which will be installed in the TEXMF tree,
 so that they can be used in any (La)TeX document. This allows different users to easily share MWEs
 which include images commands without requiring to share image files or use replacement code.
-
 
