@@ -98,12 +98,14 @@ endif
 
 ${BUILDDIR}: ${MAINFILES}
 	-mkdir ${BUILDDIR} 2>/dev/null || true
+	$(foreach img, ${IMAGESRCFILES}, mv ${img} ${img}.orig; perl sadocstrip.pl ${img} < ${img}.orig > ${img}; touch --reference ${img}.orig ${img}; )
 	cp -a ${MAINFILES} README ${BUILDDIR}/
 	$(foreach DTX,${DTXFILES}, tex '\input ydocincl\relax\includefiles{${DTX}}{${BUILDDIR}/${DTX}}' && rm -f ydocincl.log;)
 #	cd ${BUILDDIR}; $(foreach TEX,${IMAGESRCFILES}, latexmk -pdf -silent ${TEX};)
 	cd ${BUILDDIR}; ${MAKE} -f ${PWD}/Makefile --no-print-directory ${RASTERIMAGES} ${PDFFILES} ${IMAGESRCFILES}
 	cd ${BUILDDIR}; $(foreach INS, ${INSFILES}, tex ${INS};)
 	cd ${BUILDDIR}; $(foreach DTX, ${MAINDTXS}, ${LATEXMK} ${DTX};)
+	$(foreach img, ${IMAGESRCFILES}, mv ${img}.orig ${img};)
 	touch ${BUILDDIR}
 
 $(addprefix ${BUILDDIR}/,$(sort ${TDSFILES} ${CTANFILES})): ${MAINFILES}
