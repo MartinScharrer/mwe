@@ -9,8 +9,23 @@
     Package to support minimal working examples (MWE)]
 %    \end{macrocode}
 %
+% Load \pkg{graphicx} package and add "-example" suffix
+% to all extensions.
 %    \begin{macrocode}
 \RequirePackage{graphicx}
+\let\@gtempb\@gobble
+\@for\@gtempa:=\Gin@extensions\do{%
+    \edef\@tempa{{-example\@gtempa}{\@gtempa}{*}{}}%
+    \expandafter\DeclareGraphicsRule\@tempa
+    \edef\@gtempb{\@gtempb,-example\@gtempa}%
+}
+\edef\Gin@extensions{\@gtempb,\Gin@extensions}
+\let\@gtempa\relax
+\let\@gtempb\relax
+\let\@tempc\relax
+%    \end{macrocode}
+%
+%    \begin{macrocode}
 \IfFileExists{lipsum.sty}{%
     \RequirePackage{lipsum}
 }{}
