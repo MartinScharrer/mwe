@@ -12,7 +12,7 @@ BUILDDIR = build
 IMAGESRCFILES = $(wildcard image*.tex) $(wildcard grid*.tex)
 PDFFILES      = $(subst .tex,.pdf,${IMAGESRCFILES})
 BUILDPDFFILES = $(addprefix ${BUILDDIR}/, ${PDFFILES})
-SMALLIMAGES   = $(subst .tex,,$(wildcard image*x*.tex image-?.tex) image.tex)
+SMALLIMAGES   = $(subst .tex,,$(wildcard image*x*-example.tex image-?-example.tex) image-example.tex)
 RASTERIMAGES  = $(foreach image, ${SMALLIMAGES}, $(foreach ext,png jpg eps,${image}.${ext}))
 BRASTERIMAGES = $(addprefix ${BUILDDIR}/, ${RASTERIMAGES})
 MAINDTXS      = mwe.dtx
@@ -96,7 +96,7 @@ endif
 	latexmk -ps -silent $<
 	mv $*.ps $*.eps
 
-${BUILDDIR}: ${MAINFILES}
+${BUILDDIR}: ${MAINFILES} Makefile
 	-mkdir ${BUILDDIR} 2>/dev/null || true
 	$(foreach img, ${IMAGESRCFILES}, mv ${img} ${img}.orig; perl sadocstrip.pl ${img} < ${img}.orig > ${img}; touch --reference ${img}.orig ${img}; )
 	cp -a ${MAINFILES} INSTALL README ${BUILDDIR}/
