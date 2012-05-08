@@ -15,8 +15,8 @@
 %% The Current Maintainer of this work is Martin Scharrer.
 %%
 %% This work consists of the files mwe.dtx and mwe.ins and multiple 
-%% image*.tex and grid*.tex files 
-%% and the derived filebase mwe.sty and image*.* and grid*.*.
+%% example-*.tex files 
+%% and the derived filebase mwe.sty and example-*.{pdf,eps,png,eps}.
 %%
 %<=/COPYRIGHT>
 % \fi
@@ -68,7 +68,7 @@
 %
 %
 % \changes{v0.1}{2012/05/03}{Initial version.}
-% \changes{v0.2}{2012/05/08}{Appended ``-example'' to image files.}
+% \changes{v0.2}{2012/05/08}{Added ``example-'' prefix to image files.}
 %
 % \DoNotIndex{\newcommand,\newenvironment}
 %
@@ -144,8 +144,8 @@
 %   \begin{document}
 %   \blindtext
 %   \begin{figure}
-%   \includegraphics[width=.48\linewidth]{image-a-example}\hfill
-%   \includegraphics[width=.48\linewidth]{image-b-example}
+%   \includegraphics[width=.48\linewidth]{example-image-a}\hfill
+%   \includegraphics[width=.48\linewidth]{example-image-b}
 %   \caption{MWE to demonstrate how to place to images side-by-side}
 %   \end{figure}
 %   \blindtext
@@ -177,12 +177,12 @@
 %     mwe.dtx mwe.ins                                 & source/latex/mwe/ \\
 %     mwe.pdf README INSTALL                          & doc/latex/mwe/    \\
 %     mwe.sty                                         & tex/latex/mwe/    \\
-%     image-*x*-example.\{tex,pdf,png,jpg,eps\}       & tex/latex/mwe/    \\
-%     image-?-example.\{tex,pdf,png,jpg,eps\}         & tex/latex/mwe/    \\
-%     image-golden*-example.\{tex,pdf,png,jpg,eps\}   & tex/latex/mwe/    \\
-%     grid-*-example.{tex,pdf}                        & tex/latex/mwe/    \\
-%     image-a?*-example.pdf image-letter*-example.pdf & tex/latex/mwe/    \\
-%     image-a?*-example.tex image-letter*-example.tex & source/latex/mwe/ \\
+%     example-image-*x*.\{tex,pdf,png,jpg,eps\}       & tex/latex/mwe/    \\
+%     example-image-?.\{tex,pdf,png,jpg,eps\}         & tex/latex/mwe/    \\
+%     example-image-golden*.\{tex,pdf,png,jpg,eps\}   & tex/latex/mwe/    \\
+%     example-grid-*.{tex,pdf}                        & tex/latex/mwe/    \\
+%     example-image-a?*.pdf example-image-letter*.pdf & tex/latex/mwe/    \\
+%     example-image-a?*.tex example-image-letter*.tex & source/latex/mwe/ \\
 %   \bottomrule
 % \end{tabular}
 % \end{center}
@@ -201,27 +201,27 @@
 %
 % \def\mweimage#1{\begin{figure}\adjincludegraphics[max size={\textwidth}{.8\textheight},center]{#1.pdf}\caption{Image `\texttt{#1}' (PDF, also available as JPG, PNG and EPS).}\end{figure}}
 % 
-% \mweimage{image-example}
+% \mweimage{example-image}
 %
-% \mweimage{image-a-example}
+% \mweimage{example-image-a}
 %
-% \mweimage{image-b-example}
+% \mweimage{example-image-b}
 %
-% \mweimage{image-c-example}
+% \mweimage{example-image-c}
 %
-% \mweimage{image-16x10-example}
+% \mweimage{example-image-16x10}
 % 
-% \mweimage{image-10x16-example}
+% \mweimage{example-image-10x16}
 %
-% \mweimage{image-16x9-example}
+% \mweimage{example-image-16x9}
 %
-% \mweimage{image-9x16-example}
+% \mweimage{example-image-9x16}
 %
-% \mweimage{image-golden-example}
+% \mweimage{example-image-golden}
 %
-% \mweimage{image-golden-upright-example}
+% \mweimage{example-image-golden-upright}
 %
-% \mweimage{image-1x1-example}
+% \mweimage{example-image-1x1}
 %
 % \clearpage
 % \subsection{Page-size images}
@@ -232,21 +232,21 @@
 % \def\mweimage#1{\begin{figure}[!tbp]\adjincludegraphics[max size={\textwidth}{.8\textheight},center]{#1.pdf}\caption{Image `\texttt{#1}' (PDF, scaled down).}\end{figure}}
 %
 %
-% \mweimage{image-a4-example}
+% \mweimage{example-image-a4}
 %
-% \mweimage{image-a4-landscape-example}
+% \mweimage{example-image-a4-landscape}
 %
-% \mweimage{image-a3-example}
+% \mweimage{example-image-a3}
 %
-% \mweimage{image-a3-landscape-example}
+% \mweimage{example-image-a3-landscape}
 %
-% \mweimage{image-a5-example}
+% \mweimage{example-image-a5}
 %
-% \mweimage{image-a5-landscape-example}
+% \mweimage{example-image-a5-landscape}
 %
-% \mweimage{image-letter-example}
+% \mweimage{example-image-letter}
 %
-% \mweimage{image-letter-landscape-example}
+% \mweimage{example-image-letter-landscape}
 %
 % \clearpage
 % \subsection{Test images}
@@ -259,9 +259,9 @@
 %
 % \def\mweimage#1{\begin{figure}[!tbp]\adjincludegraphics[max size={\textwidth}{.8\textheight},center]{#1.pdf}\caption{Image `\texttt{#1}' (PDF, also available as JPG, PNG, EPS).}\end{figure}}
 %
-% \mweimage{grid-100x100bp-example}
+% \mweimage{example-grid-100x100bp}
 %
-% \mweimage{grid-100x100pt-example}
+% \mweimage{example-grid-100x100pt}
 %
 %
 % \StopEventually{}
@@ -273,91 +273,91 @@
 % \fi
 %
 % \iffalse
-%<@grid-100x100bp-example.tex>
+%<@example-grid-100x100bp.tex>
 % \fi
 %
 % \iffalse
-%<@grid-100x100pt-example.tex>
+%<@example-grid-100x100pt.tex>
 % \fi
 %
 % \iffalse
-%<@image-10x16-example.tex>
+%<@example-image-10x16.tex>
 % \fi
 %
 % \iffalse
-%<@image-16x10-example.tex>
+%<@example-image-16x10.tex>
 % \fi
 %
 % \iffalse
-%<@image-16x9-example.tex>
+%<@example-image-16x9.tex>
 % \fi
 %
 % \iffalse
-%<@image-1x1-example.tex>
+%<@example-image-1x1.tex>
 % \fi
 %
 % \iffalse
-%<@image-4x3-example.tex>
+%<@example-image-4x3.tex>
 % \fi
 %
 % \iffalse
-%<@image-9x16-example.tex>
+%<@example-image-9x16.tex>
 % \fi
 %
 % \iffalse
-%<@image-a3-landscape-example.tex>
+%<@example-image-a3-landscape.tex>
 % \fi
 %
 % \iffalse
-%<@image-a3-example.tex>
+%<@example-image-a3.tex>
 % \fi
 %
 % \iffalse
-%<@image-a4-landscape-example.tex>
+%<@example-image-a4-landscape.tex>
 % \fi
 %
 % \iffalse
-%<@image-a4-example.tex>
+%<@example-image-a4.tex>
 % \fi
 %
 % \iffalse
-%<@image-a5-landscape-example.tex>
+%<@example-image-a5-landscape.tex>
 % \fi
 %
 % \iffalse
-%<@image-a5-example.tex>
+%<@example-image-a5.tex>
 % \fi
 %
 % \iffalse
-%<@image-a-example.tex>
+%<@example-image-a.tex>
 % \fi
 %
 % \iffalse
-%<@image-b-example.tex>
+%<@example-image-b.tex>
 % \fi
 %
 % \iffalse
-%<@image-c-example.tex>
+%<@example-image-c.tex>
 % \fi
 %
 % \iffalse
-%<@image-golden-example.tex>
+%<@example-image-golden.tex>
 % \fi
 %
 % \iffalse
-%<@image-golden-upright-example.tex>
+%<@example-image-golden-upright.tex>
 % \fi
 %
 % \iffalse
-%<@image-letter-landscape-example.tex>
+%<@example-image-letter-landscape.tex>
 % \fi
 %
 % \iffalse
-%<@image-letter-example.tex>
+%<@example-image-letter.tex>
 % \fi
 %
 % \iffalse
-%<@image-example.tex>
+%<@example-image.tex>
 % \fi
 %
 %

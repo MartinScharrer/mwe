@@ -17,17 +17,17 @@ to PNG and JPG. Compile again with latex and dvips to create the EPS files
 
 The files should be installed in the following subdirectories of the TEXMF tree.
 
-    =======================================================================
-       Files                                  TEXMF Installation folder
-    -----------------------------------------------------------------------
-       mwe.dtx mwe.ins                        source/latex/mwe/
-       mwe.pdf README INSTALL                 doc/latex/mwe/
-       mwe.sty                                tex/latex/mwe/
-       image-*x*.{tex,pdf,png,jpg,eps}        tex/latex/mwe/
-       image-?.{tex,pdf,png,jpg,eps}          tex/latex/mwe/
-       image-golden*.{tex,pdf,png,jpg,eps}    tex/latex/mwe/
-       grid-*.{tex,pdf}                       tex/latex/mwe/
-       image-a?*.pdf image-letter*.pdf        tex/latex/mwe/
-       image-a?*.tex image-letter*.tex        source/latex/mwe/
-    =======================================================================
+=============================================================================
+    Files                                          TEXMF Installation folder
+-----------------------------------------------------------------------------
+    mwe.dtx mwe.ins                                     source/latex/mwe/
+    mwe.pdf README INSTALL                              doc/latex/mwe/
+    mwe.sty                                             tex/latex/mwe/
+    example-image-*x*.{tex,pdf,png,jpg,eps}             tex/latex/mwe/
+    example-image-?.{tex,pdf,png,jpg,eps}               tex/latex/mwe/
+    example-image-golden*.{tex,pdf,png,jpg,eps}         tex/latex/mwe/
+    example-grid-*.{tex,pdf}                            tex/latex/mwe/
+    example-image-a?*.pdf example-image-letter*.pdf     tex/latex/mwe/
+    example-image-a?*.tex example-image-letter*.tex     source/latex/mwe/
+=============================================================================
 
