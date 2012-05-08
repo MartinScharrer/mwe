@@ -1,7 +1,7 @@
 % \iffalse meta-comment
 %<=*COPYRIGHT>
-%% Copyright (C) 2011 by Martin Scharrer <martin@scharrer-online.de>
-%% ---------------------------------------------------------------------------
+%% Copyright (C) 2012 by Martin Scharrer <martin@scharrer-online.de>
+%% -----------------------------------------------------------------------
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3
 %% of this license or (at your option) any later version.
@@ -14,8 +14,9 @@
 %%
 %% The Current Maintainer of this work is Martin Scharrer.
 %%
-%% This work consists of the files <+name+>.dtx and <+name+>.ins
-%% and the derived filebase <+name+>.sty.
+%% This work consists of the files mwe.dtx and mwe.ins and multiple 
+%% image*.tex and grid*.tex files 
+%% and the derived filebase mwe.sty and image*.* and grid*.*.
 %%
 %<=/COPYRIGHT>
 % \fi
@@ -24,10 +25,10 @@
 %<*driver>
 \ProvidesFile{mwe.dtx}[%
 %<=*DATE>
-    2012/05/03
+    2012/05/08
 %<=/DATE>
 %<=*VERSION>
-    v0.1
+    v0.2
 %<=/VERSION>
     DTX file for mwe]
 \documentclass{ydoc}
@@ -67,6 +68,7 @@
 %
 %
 % \changes{v0.1}{2012/05/03}{Initial version.}
+% \changes{v0.2}{2012/05/08}{Appended ``-example'' to image files.}
 %
 % \DoNotIndex{\newcommand,\newenvironment}
 %
@@ -142,8 +144,8 @@
 %   \begin{document}
 %   \blindtext
 %   \begin{figure}
-%   \includegraphics[width=.48\linewidth]{image-a}\hfill
-%   \includegraphics[width=.48\linewidth]{image-b}
+%   \includegraphics[width=.48\linewidth]{image-a-example}\hfill
+%   \includegraphics[width=.48\linewidth]{image-b-example}
 %   \caption{MWE to demonstrate how to place to images side-by-side}
 %   \end{figure}
 %   \blindtext
@@ -172,15 +174,15 @@
 %   \toprule
 %    \normalfont  Files & \normalfont TEXMF Installation folder \\
 %   \midrule
-%     mwe.dtx mwe.ins                       & source/latex/mwe/ \\
-%     mwe.pdf README INSTALL                & doc/latex/mwe/    \\
-%     mwe.sty                               & tex/latex/mwe/    \\
-%     image-*x*.\{tex,pdf,png,jpg,eps\}     & tex/latex/mwe/    \\
-%     image-?.\{tex,pdf,png,jpg,eps\}       & tex/latex/mwe/    \\
-%     image-golden*.\{tex,pdf,png,jpg,eps\} & tex/latex/mwe/    \\
-%     grid-*.{tex,pdf}                      & tex/latex/mwe/    \\
-%     image-a?*.pdf image-letter*.pdf       & tex/latex/mwe/    \\
-%     image-a?*.tex image-letter*.tex       & source/latex/mwe/ \\
+%     mwe.dtx mwe.ins                                 & source/latex/mwe/ \\
+%     mwe.pdf README INSTALL                          & doc/latex/mwe/    \\
+%     mwe.sty                                         & tex/latex/mwe/    \\
+%     image-*x*-example.\{tex,pdf,png,jpg,eps\}       & tex/latex/mwe/    \\
+%     image-?-example.\{tex,pdf,png,jpg,eps\}         & tex/latex/mwe/    \\
+%     image-golden*-example.\{tex,pdf,png,jpg,eps\}   & tex/latex/mwe/    \\
+%     grid-*-example.{tex,pdf}                        & tex/latex/mwe/    \\
+%     image-a?*-example.pdf image-letter*-example.pdf & tex/latex/mwe/    \\
+%     image-a?*-example.tex image-letter*-example.tex & source/latex/mwe/ \\
 %   \bottomrule
 % \end{tabular}
 % \end{center}
@@ -255,11 +257,11 @@
 % results in nice integer PDF sizes. The difference is not meaningful for normal MWEs but can be significant if these files
 % are used to demonstrate scaling features.
 %
-% \def\mweimage#1{\begin{figure}[!tbp]\adjincludegraphics[max size={\textwidth}{.8\textheight},center]{#1.pdf}\caption{Image `\texttt{#1}' (PDF).}\end{figure}}
+% \def\mweimage#1{\begin{figure}[!tbp]\adjincludegraphics[max size={\textwidth}{.8\textheight},center]{#1.pdf}\caption{Image `\texttt{#1}' (PDF, also available as JPG, PNG, EPS).}\end{figure}}
 %
-% \mweimage{grid-100x100bp}
+% \mweimage{grid-100x100bp-example}
 %
-% \mweimage{grid-100x100pt}
+% \mweimage{grid-100x100pt-example}
 %
 %
 % \StopEventually{}
@@ -271,11 +273,11 @@
 % \fi
 %
 % \iffalse
-%<@grid-100x100bp.tex>
+%<@grid-100x100bp-example.tex>
 % \fi
 %
 % \iffalse
-%<@grid-100x100pt.tex>
+%<@grid-100x100pt-example.tex>
 % \fi
 %
 % \iffalse

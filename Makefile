@@ -9,10 +9,10 @@ export CONTRIBUTION VERSION NAME EMAIL SUMMARY DIRECTORY DONOTANNOUNCE ANNOUNCE 
 
 BUILDDIR = build
 
-IMAGESRCFILES = $(wildcard image*.tex) $(wildcard grid*.tex)
+IMAGESRCFILES = $(wildcard image*-example.tex) $(wildcard grid*-example.tex)
 PDFFILES      = $(subst .tex,.pdf,${IMAGESRCFILES})
 BUILDPDFFILES = $(addprefix ${BUILDDIR}/, ${PDFFILES})
-SMALLIMAGES   = $(subst .tex,,$(wildcard image*x*-example.tex image-?-example.tex) image-example.tex)
+SMALLIMAGES   = $(subst .tex,,$(wildcard image*x*-example.tex image-?-example.tex grid*example.tex) image-example.tex)
 RASTERIMAGES  = $(foreach image, ${SMALLIMAGES}, $(foreach ext,png jpg eps,${image}.${ext}))
 BRASTERIMAGES = $(addprefix ${BUILDDIR}/, ${RASTERIMAGES})
 MAINDTXS      = mwe.dtx
