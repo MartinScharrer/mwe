@@ -11,7 +11,30 @@
 %
 %    \begin{macrocode}
 \RequirePackage{graphicx}
+%    \end{macrocode}
+%
+% Allow ``image'' instead of ``example-image''.
+%    \begin{macrocode}
 \graphicspath{{example-}}
+%    \end{macrocode}
+%
+% Put `|.pdf|' as first extension if included in 
+% list of image file extensions.
+%    \begin{macrocode}
+\begingroup
+\def\@tempa#1,.pdf,#2\@nnil{%
+    \ifx\@nnil#2\@nnil\else
+        \def\@tempa##1\relax##2\@nnil{%
+            \gdef\Gin@extensions{.pdf,#1,##1}%
+        }%
+        \@tempa#2\@nnil
+    \fi
+}
+\expandafter\@tempa\Gin@extensions\relax,.pdf,\@nnil
+\endgroup
+%    \end{macrocode}
+%
+%    \begin{macrocode}
 \IfFileExists{lipsum.sty}{%
     \RequirePackage{lipsum}
 }{}
