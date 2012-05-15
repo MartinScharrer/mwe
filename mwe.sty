@@ -15,7 +15,9 @@
 %
 % Allow ``image'' instead of ``example-image''.
 %    \begin{macrocode}
-\graphicspath{{example-}}
+\expandafter\ifx\csname Ginput@path\endcsname\relax
+    \graphicspath{{example-}}
+\fi
 %    \end{macrocode}
 %
 % Put `|.pdf|' as first extension if included in 
