@@ -25,10 +25,10 @@
 %<*driver>
 \ProvidesFile{mwe.dtx}[%
 %<=*DATE>
-    2012/05/08
+    2012/05/15
 %<=/DATE>
 %<=*VERSION>
-    v0.2
+    v0.3
 %<=/VERSION>
     DTX file for mwe]
 \documentclass{ydoc}
@@ -69,6 +69,7 @@
 %
 % \changes{v0.1}{2012/05/03}{Initial version.}
 % \changes{v0.2}{2012/05/08}{Added ``example-'' prefix to image files.}
+% \changes{v0.3}{2012/05/15}{Added graphicspath for ``example-'' and moved PDF to the begin of the file extensions.}
 %
 % \DoNotIndex{\newcommand,\newenvironment}
 %
@@ -136,6 +137,10 @@
 % The \pkg{mwe} can be loaded in the preamble of a MWE and loads often used packages. 
 % At this moment these are only \pkg{graphicx}, \pkg{lipsum} and \pkg{blindtext}, while the last two are only
 % loaded if they are installed. The package is not required for using the image files.
+% If the package is loaded it will change the graphic extension list so that PDF files are used first for formats which
+% support PDF images. Also \Macro\graphicspath{{example-}} is used to allow to shorten the file names to `|image..|'
+% instead of the full `|example-image...|'.
+%
 % Some MWE might even be better off not to use the package if specific side-effect between packages is tested.
 %
 % \begin{lstlisting}[language={[latex]tex},gobble=4,title={Usage Example}]
@@ -172,7 +177,7 @@
 % \begin{center}
 % \begin{tabular}{>{\ttfamily}l>{\ttfamily}l}
 %   \toprule
-%    \normalfont  Files & \normalfont TEXMF Installation folder \\
+%    \normalfont  Files & \normalfont\hskip-3em TEXMF Installation folder \\
 %   \midrule
 %     mwe.dtx mwe.ins                                 & source/latex/mwe/ \\
 %     mwe.pdf README INSTALL                          & doc/latex/mwe/    \\
@@ -190,6 +195,8 @@
 %
 % \section{Provided Images}
 % The following images are provided by \pkg{mwe}.
+% If the \pkg{mwe} \LaTeX\ package is loaded the PDF version will be used instead of the PNG version
+% and the `|example-|' part of the filename may be skipped.
 %
 % \subsection{Normal Images}
 % The following images are meant as dummy replacements for real images.
