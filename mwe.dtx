@@ -25,10 +25,10 @@
 %<*driver>
 \ProvidesFile{mwe.dtx}[%
 %<=*DATE>
-    2012/05/15
+    2013/05/31
 %<=/DATE>
 %<=*VERSION>
-    v0.3
+    v0.3a
 %<=/VERSION>
     DTX file for mwe]
 \documentclass{ydoc}
@@ -70,6 +70,7 @@
 % \changes{v0.1}{2012/05/03}{Initial version.}
 % \changes{v0.2}{2012/05/08}{Added ``example-'' prefix to image files.}
 % \changes{v0.3}{2012/05/15}{Added graphicspath for ``example-'' and moved PDF to the begin of the file extensions.}
+% \changes{v0.3a}{2013/05/31}{A4 and letter PDF image documents have now multiple pages.}
 %
 % \DoNotIndex{\newcommand,\newenvironment}
 %
@@ -232,8 +233,9 @@
 %
 % \clearpage
 % \subsection{Page-size images}
-% The following files are PDFs in a specific page size like A4, letter, etc.
-% They are provided for use cases where whole PDF pages are included.
+% The following files are PDFs in a specific page size like A4, A3, A5, letter, etc.
+% They are provided for use cases where whole PDF pages are included. The A4 and letter version are multi-page PDF documents because such are sometimes required
+% in MWEs.
 % Because these images are large they are scaled down in order to be displayed in this manual.
 %
 % \def\mweimage#1{\begin{figure}[!tbp]\adjincludegraphics[max size={\textwidth}{.8\textheight},center]{#1.pdf}\caption{Image `\texttt{#1}' (PDF, scaled down).}\end{figure}}
