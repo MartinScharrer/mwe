@@ -1,0 +1,50 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{geometry}
+
+\usepackage{tikz}
+
+\pagestyle{empty}
+
+\colorlet{color1}{red}
+\colorlet{color2}{green}
+\colorlet{color3}{blue}
+\colorlet{color4}{yellow}
+\colorlet{color5}{orange}
+\colorlet{color6}{olive}
+\colorlet{color7}{pink}
+\colorlet{color8}{lime}
+\colorlet{color9}{purple}
+\colorlet{color10}{teal}
+\colorlet{color11}{cyan} 
+\colorlet{color12}{violet}
+
+
+\def\dopage{%
+    \null
+    \begin{tikzpicture}[remember picture,overlay]
+        \path [fill=color\thepage] (current page.south west) rectangle (current page.north east);
+        \node[font=\sffamily\huge,scale=12] at (current page) {\thepage};
+        
+    \end{tikzpicture}%
+    \clearpage
+}
+
+\def\doit{\tikzstuff\afterpage{\doit}}
+
+\begin{document}
+
+\dopage
+\dopage
+\dopage
+\dopage
+\dopage
+\dopage
+\dopage
+\dopage
+\dopage
+\dopage
+\dopage
+\dopage
+
+\end{document}
+
