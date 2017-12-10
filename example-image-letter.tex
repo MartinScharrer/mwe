@@ -1,27 +1,19 @@
 \documentclass[letterpaper,10pt]{article}
 \usepackage{geometry}
 
-\usepackage{afterpage}
 \usepackage{tikz}
 \usepackage{lipsum}
 
 \pagestyle{empty}
+\begin{document}
 
-\def\tikzstuff{%
+\lipsum*[1]
 \begin{tikzpicture}[remember picture,overlay]
   \clip (current page.south west) rectangle (current page.north east);
   \draw [line width=2pt] ([shift={(.5\pgflinewidth,.5\pgflinewidth)}]current page.south west) rectangle ([shift={(-.5\pgflinewidth,-.5\pgflinewidth)}]current page.north east);
-  \node at (current page.center) [scale=10] {\Huge\sffamily\thepage};
-\end{tikzpicture}%
-}
+\end{tikzpicture}
 
-\def\doit{\tikzstuff\afterpage{\doit}}
-
-\begin{document}
-
-\doit
-\lipsum[1-67]
-\let\doit\relax
+\lipsum[2-5]
 
 \end{document}
 
