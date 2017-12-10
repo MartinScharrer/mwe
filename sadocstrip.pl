@@ -9,7 +9,7 @@ print "%    \\begin{macrocode}\n";
 print "%</$name>\n";
 print "%<*$name\&standalone>\n";
 
-while (<>) {
+while (<STDIN>) {
     print "$_";
     last if $_ =~ /^\s*\\begin{document}/;
 }
@@ -17,7 +17,7 @@ while (<>) {
 print "%</$name\&standalone>\n";
 print "%<*$name>\n";
 
-while (<>) {
+while (<STDIN>) {
     if ($_ =~ /^\s*\\end{document}/) {
         print "%</$name>\n";
         print "%<*$name\&standalone>\n";
@@ -28,7 +28,7 @@ while (<>) {
     }
 }
 
-while (<>) {
+while (<STDIN>) {
     print "%$_";
 }
 
