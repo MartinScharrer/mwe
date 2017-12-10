@@ -36,6 +36,7 @@
 \usepackage{mwe}[\filedate]
 \usepackage[export]{adjustbox}
 \usepackage{flafter}
+\usepackage{pdfpages}
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
@@ -256,6 +257,20 @@
 % \mweimage{example-image-letter-landscape}
 %
 % \clearpage
+% \begingroup
+% \let\newpage\relax
+% \subsection{Numbered pages}
+% Colored 12-pages A4 size document. Can be used with the |pages| key of\ \cs{includegraphics}: \texttt{example-image-a4-numbered} (pages scaled down)
+% \includepdf[pages=-,nup=3x4,offset=0 -30,delta=10 10,scale=.6]{example-image-a4-numbered.pdf}
+% \endgroup
+% \clearpage
+% \begingroup
+% \let\newpage\relax
+% Colored 12-pages letter size document: \texttt{example-image-letter-numbered} (pages scaled down)\par
+% \includepdf[pages=-,nup=3x4,delta=10 10,scale=.6]{example-image-letter-numbered.pdf}
+% \endgroup
+% \clearpage
+%
 % \subsection{Test images}
 % The following images are intended for demonstrations of some image manipulation features.
 % Their grid nature will make cropping effects very visible.
