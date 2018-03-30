@@ -224,9 +224,9 @@ webupload: ${CTAN_FILE}
 
 
 example-movie.mp4: example-movie.pdf
-	mkdir movietemp
+	-mkdir movietemp
 	convert -density 300 -quality 85 -resize 1280x720 example-movie.pdf movietemp/example-movie-%02d.png
-	ffmpeg -r 1 -i movietemp/example-movie-%02d.png -c:v libx264  -pix_fmt yuv420p -an -y example-movie.mp4
-	${RM} -r movietemp
+	ffmpeg -r 1 -i movietemp/example-movie-%02d.png -c:v libx264 -r 30 -pix_fmt yuv420p -an -y example-movie.mp4
+	#${RM} -r movietemp
 
 
