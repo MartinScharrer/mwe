@@ -9,7 +9,7 @@ export CONTRIBUTION VERSION NAME EMAIL SUMMARY DIRECTORY DONOTANNOUNCE ANNOUNCE 
 
 BUILDDIR = build
 
-IMAGESRCFILES = $(wildcard example-image*.tex) $(wildcard example-grid*.tex)
+IMAGESRCFILES = $(wildcard example-image*.tex) $(wildcard example-grid*.tex) example-movie.tex
 PDFFILES      = $(subst .tex,.pdf,${IMAGESRCFILES})
 BUILDPDFFILES = $(addprefix ${BUILDDIR}/, ${PDFFILES})
 SMALLIMAGES   = $(subst .tex,,$(wildcard example-image*x*.tex example-image-?.tex example-grid*.tex) example-image.tex)
@@ -20,7 +20,7 @@ MAINPDFS      = $(subst .dtx,.pdf,${MAINDTXS})
 DTXFILES      = ${MAINDTXS}
 INSFILES      = ${CONTRIBUTION}.ins
 LTXFILES      = ${CONTRIBUTION}.sty ${IMAGESRCFILES}
-LTXIMGFILES   = $(subst .tex,.pdf,${IMAGESRCFILES}) ${RASTERIMAGES}
+LTXIMGFILES   = $(subst .tex,.pdf,${IMAGESRCFILES}) ${RASTERIMAGES} example-movie.mp4
 LTXDOCFILES   = ${MAINPDFS} README INSTALL
 LTXSRCFILES   = ${DTXFILES} ${INSFILES}
 PLAINFILES    = #${CONTRIBUTION}.tex
@@ -103,6 +103,7 @@ ${BUILDDIR}: ${MAINFILES} Makefile
 	$(foreach DTX,${DTXFILES}, tex '\input ydocincl\relax\includefiles{${DTX}}{${BUILDDIR}/${DTX}}' && rm -f ydocincl.log;)
 #	cd ${BUILDDIR}; $(foreach TEX,${IMAGESRCFILES}, latexmk -pdf -silent ${TEX};)
 	cd ${BUILDDIR}; ${MAKE} -f ${PWD}/Makefile --no-print-directory ${RASTERIMAGES} ${PDFFILES} ${IMAGESRCFILES}
+	cd ${BUILDDIR}; ${MAKE} -f ${PWD}/Makefile --no-print-directory example-movie.mp4
 	cd ${BUILDDIR}; $(foreach INS, ${INSFILES}, tex ${INS};)
 	cd ${BUILDDIR}; $(foreach DTX, ${MAINDTXS}, ${LATEXMK} ${DTX};)
 	$(foreach img, ${IMAGESRCFILES}, mv ${img}.orig ${img};)
@@ -220,5 +221,12 @@ upload: ${CTAN_FILE}
 webupload: VERSION = ${GETVERSION}
 webupload: ${CTAN_FILE}
 	${WEBBROWSER} 'http://dante.ctan.org/upload.html?contribution=${CONTRIBUTION}&version=${VERSION}&name=${NAME}&email=${EMAIL}&summary=${SUMMARY}&directory=${DIRECTORY}&DoNotAnnounce=${DONOTANNOUNCE}&announce=${ANNOUNCEMENT}&notes=${NOTES}&license=${LICENSE}&freeversion=${FREEVERSION}' &
+
+
+example-movie.mp4: example-movie.pdf
+	mkdir movietemp
+	convert -density 300 -quality 85 -resize 1280x720 example-movie.pdf movietemp/example-movie-%02d.png
+	ffmpeg -r 1 -i movietemp/example-movie-%02d.png -c:v libx264  -pix_fmt yuv420p -an -y example-movie.mp4
+	${RM} -r movietemp
 
 
