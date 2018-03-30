@@ -1,0 +1,15 @@
+\documentclass[border=0]{standalone}
+\usepackage{tikz}
+\begin{document}%
+\begin{tikzpicture}[x=32bp,y=24bp]% 4x3
+    \clip (0,0) rectangle (10,10);
+    \path [fill=black!25] (0,0) rectangle (10,10);
+    \draw [thick,black!40]
+        (0,0) -- (10,10)
+        (10,0) -- (0,10)
+        (5,0) -- (5,10)
+        (0,5) -- (10,5)
+    ;
+    \path [draw,ultra thick] (0,0) rectangle (10,10);
+\end{tikzpicture}%
+\end{document}%
