@@ -29,5 +29,7 @@ The files should be installed in the following subdirectories of the TEXMF tree.
     example-grid-*.{tex,pdf}                            tex/latex/mwe/
     example-image-a?*.pdf example-image-letter*.pdf     tex/latex/mwe/
     example-image-a?*.tex example-image-letter*.tex     source/latex/mwe/
+    example-movie.mp4                                   tex/latex/mwe/
+    example-movie.tex                                   source/latex/mwe/
 =============================================================================
 
