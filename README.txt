@@ -1,8 +1,8 @@
 LaTeX package 'mwe'
 ~~~~~~~~~~~~~~~~~~~
-Copyright (c) 2012-2018 by Martin Scharrer <martin@scharrer-online.de>
+Copyright (c) 2012-2022 by Martin Scharrer <martin.scharrer@web.de>
 CTAN: http://www.ctan.org/pkg/mwe
-Code repository: https://bitbucket.org/martin_scharrer/mwe
+Code repository: https://github.com/MartinScharrer/mwe/
 
 'mwe' provides several files useful to create a minimal working examples (MWEs).
 A 'mwe' package is provided which loads a small set of often used packages for MWEs.
